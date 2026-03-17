@@ -31,7 +31,6 @@ void menu()
 {
 	int op = 0;
 	while (op != 7) {
-		system("cls"); // somente no windows
 		cout << "Menu Lista Ligada";
 		cout << endl << endl;
 		cout << "1 - Inicializar Lista \n";
@@ -65,15 +64,13 @@ void menu()
 		default:
 			break;
 		}
-
-		system("pause"); // somente no windows
 	}
 }
 
 void inicializar()
 {
 
-	// se a lista j� possuir elementos
+	// se a lista j� possuir elementos
 	// libera a memoria ocupada
 	NO* aux = primeiro;
 	while (aux != NULL) {
@@ -115,10 +112,10 @@ void exibirElementos()
 	}
 }
 
-void inserirElemento()
+void inserirElemento() //Função no c++ que não retorna nenhum Void.
 {
 	// aloca memoria dinamicamente para o novo elemento
-	NO* novo = (NO*)malloc(sizeof(NO));
+	NO* novo = (NO*)malloc(sizeof(NO)); //Criando ponteiro chamado "novo" do tipo NÓ.
 	if (novo == NULL)
 	{
 		return;
@@ -128,18 +125,21 @@ void inserirElemento()
 	cin >> novo->valor;
 	novo->prox = NULL;
 
-	if (primeiro == NULL)
+	if (primeiro == NULL) //Primeiro é o ponteiro para o início da lista.
 	{
-		primeiro = novo;
+		primeiro = novo; //Se a lista estiver vazia, o novo nó passa a ser o primeiro elemento.
 	}
 	else
 	{
-		// procura o final da lista
-		NO* aux = primeiro;
-		while (aux->prox != NULL) {
-			aux = aux->prox;
+		if ((novo->)){
+
 		}
-		aux->prox = novo;
+		// procura o final da lista
+		NO* aux = primeiro; //
+		while (aux->prox != NULL) { // Loop que percorre a lista enquanto o próximo nó existir.
+			aux = aux->prox; // Avança o ponteiro aux para o próximo nó.
+		}
+		aux->prox = novo; // Faz o último nó apontar para o novo nó, inserindo ele no final da lista.
 	}
 }
 
@@ -156,7 +156,7 @@ void buscarElemento()
 
 
 // retorna um ponteiro para o elemento buscado
-// ou NULL se o elemento n�o estiver na lista
+// ou NULL se o elemento n�o estiver na lista
 NO* posicaoElemento(int numero)
 {
 	NO* aux = primeiro;
