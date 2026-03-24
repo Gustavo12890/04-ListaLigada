@@ -112,34 +112,36 @@ void exibirElementos()
 	}
 }
 
-void inserirElemento() //Função no c++ que não retorna nenhum Void.
+void inserirElemento() 
 {
-	// aloca memoria dinamicamente para o novo elemento
-	NO* novo = (NO*)malloc(sizeof(NO)); //Criando ponteiro chamado "novo" do tipo NÓ.
+	int valor;
+	cout << "Digite o elemento: ";
+	cin >> valor;
+
+	if (posicaoElemento(valor) != NULL) {
+		cout << "Elemento já existe!" << endl;
+		return;
+	}
+
+	// aloca memória para o novo elemento
+	NO* novo = (NO*)malloc(sizeof(NO));
 	if (novo == NULL)
 	{
 		return;
 	}
 
-	cout << "Digite o elemento: ";
-	cin >> novo->valor;
+	novo->valor = valor; // -> acessa o objeto para onde ele está apontando.
 	novo->prox = NULL;
 
-	if (primeiro == NULL) //Primeiro é o ponteiro para o início da lista.
-	{
-		primeiro = novo; //Se a lista estiver vazia, o novo nó passa a ser o primeiro elemento.
-	}
-	else
-	{
-		if ((novo->)){
-
-		}
+	if (primeiro == NULL) {
+		primeiro = novo;
+	} else {
 		// procura o final da lista
-		NO* aux = primeiro; //
-		while (aux->prox != NULL) { // Loop que percorre a lista enquanto o próximo nó existir.
-			aux = aux->prox; // Avança o ponteiro aux para o próximo nó.
+		NO* aux = primeiro;
+		while (aux->prox != NULL) {
+			aux = aux->prox;
 		}
-		aux->prox = novo; // Faz o último nó apontar para o novo nó, inserindo ele no final da lista.
+		aux->prox = novo;
 	}
 }
 
@@ -150,10 +152,17 @@ void excluirElemento()
 
 void buscarElemento()
 {
-	
+	int valor;
+	cout << "Digite o elemento: ";
+	cin >> valor;
+
+	if (posicaoElemento(valor) != NULL) {
+		cout << "ENCONTRADO" << endl;
+	}
+	else {
+		cout << "ELEMENTO NÃO ENCONTRADO" << endl;
+	}
 }
-
-
 
 // retorna um ponteiro para o elemento buscado
 // ou NULL se o elemento n�o estiver na lista
