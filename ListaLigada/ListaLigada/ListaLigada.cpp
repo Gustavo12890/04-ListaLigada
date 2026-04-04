@@ -147,7 +147,33 @@ void inserirElemento()
 
 void excluirElemento()
 {
-	
+	int valor;
+	cout << "Digite o elemento: ";
+	cin >> valor;
+
+	if (posicaoElemento(valor) == NULL) {
+		cout << "Elemento não encontrado" << endl;
+		return; 
+	}
+
+	if (primeiro != NULL && primeiro->valor == valor) {
+		NO* paraExcluir = primeiro;
+		primeiro = primeiro->prox;
+		free(paraExcluir);
+		return;
+	}
+
+	NO* anterior = primeiro;
+	NO* atual = (primeiro != NULL) ? primeiro->prox : NULL;
+	while (atual != NULL && atual->valor != valor) {
+		anterior = atual;
+		atual = atual->prox;
+	}
+
+	if (atual != NULL) {
+		anterior->prox = atual->prox;
+		free(atual);
+	}
 }
 
 void buscarElemento()
@@ -165,7 +191,7 @@ void buscarElemento()
 }
 
 // retorna um ponteiro para o elemento buscado
-// ou NULL se o elemento n�o estiver na lista
+// ou NULL se o elemento não estiver na lista
 NO* posicaoElemento(int numero)
 {
 	NO* aux = primeiro;
